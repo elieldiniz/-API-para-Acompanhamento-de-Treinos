@@ -1,9 +1,3 @@
-# Documentação da API para Acompanhamento de Treinos
-
-
-# Documentação da API para Acompanhamento de Treinos
-
-
 
 ## Documentação da API - Aplicativo de Academia
 
