@@ -75,7 +75,7 @@ Todos os endpoints retornarão uma resposta JSON com os seguintes campos:
 * **data:** Os dados da requisição ou uma mensagem de erro.
 
 
-## Casos de Uso - Aplicativo de Academia
+## Casos de Uso do Aplicativo
 
 ### Cadastrar Usuário
 * **Actor:** Novo usuário
