@@ -1,19 +1,34 @@
 import express from 'express';
-import User from './user/User';
+import { PrismaClient, User } from '../../Acompanhamento-de-Treinos/node_modules/@prisma/client/index'; // Import Prisma and User model
+import UserController from './user/controller/UserControler'; // Import UserController
 
 const app = express();
+
 const port = process.env.PORT || 3000;
 
-app.get('/user', (req, res) => {
+// ... (error handling middleware if needed)
 
-    const user = {name: 'leil D1niz', email: 'elieldinoiz@gmail.com', password: '@dakfa'};
+app.post('/users', async (req, res) => {
+  try {
+    const {name ,email, password} = req.body;
 
-    const UserIntance = new User(user.name, user.email, user.password)
-    res.json(UserIntance)
-  
-}); 
+    const userController = new UserController();
+    const createdUser = await userController.create({
+      name,
+      email,
+      password,
+    });
+
+
+
+    res.status(201).json(createdUser);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error});
+  }
+});
 
 app.listen(port, () => {
-    console.log('server ativo localhost:3000')
-});  
-
+  console.log(`Server listening on port ${port}`);
+});

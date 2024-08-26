@@ -15,15 +15,14 @@ export default class User{
         if(!this.name || !this.email || !this.password){
             return new UserError('Porfavor revise seus dados')
         }
-        return console.log(!this.name || !this.email || !this.password)
-    } 
 
-    getUser(){
-        return {
+        const data = {
             name: this.name,
             email: this.email,
             password: this.password
         }
-    }
 
+        const resdate = JSON.stringify(data)
+        return resdate
+    } 
 }
