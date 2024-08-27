@@ -14,20 +14,43 @@ datasource db {
 }
 
 model User {
-  id        Int     @id @default(autoincrement())
-  name   String
+  id        Int      @id @default(autoincrement())
+  name      String
   email     String  @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  data         DateTime @default(now())
+
+  treinos   Treino[] @relation( "user")
 
   @@map("users")
+  Treino Treino[]
 }
 
-model Contacts {
-  id  String  @id @default(uuid())
-  name  String 
-  email String
-  phone String
+model exercisio {
+  id        String   @id @default(uuid())
+  name      String
+  carga     String
+  data         DateTime @default(now())
 
-  @@map("contacts")
+  treinos   Treino[] @relation("exercicio")
+
+  @@map("exercicios")
+  Treino Treino[]
+}
+
+model Treino {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  exercicioId  String
+  data         DateTime @default(now())
+
+
+
+  user         User    @relation(fields: [userId], references: [id])
+  exercicio    exercisio @relation(fields: [exercicioId], references: [id])
+
+  @@map("treinos")
+  User User[] @relation("user")
+  exercisio exercisio[] @relation("exercicio")
 }
