@@ -11,7 +11,8 @@ export class UserCase {
     }
 
     async create({ name, email, password }: UserCreated): Promise<User> {
-        const user = await this.UserRepository.create({ name, email, password });
-        return user
+        const user = await this.UserRepository.create({ name, email, password })
+        const listUserName = await this.UserRepository.listUserName(user.name)
+        return listUserName
       }
 }

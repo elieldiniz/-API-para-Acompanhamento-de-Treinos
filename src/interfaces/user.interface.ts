@@ -1,8 +1,12 @@
 export interface User {
     id: number
-    email: string
     name: string
-}
+    email: string
+    password: string
+    createdAt: Date
+    updatedAt: Date
+    data: Date
+} null
 
 
 export interface UserCreated {
@@ -12,5 +16,6 @@ export interface UserCreated {
 }
 
 export interface    UserRepository{
+    listUserName: any
     create(data: UserCreated): Promise<User>
 }

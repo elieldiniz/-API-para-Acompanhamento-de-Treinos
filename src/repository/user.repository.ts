@@ -10,7 +10,17 @@ class UserRepositoryPrisma implements UserRepository {
         password: data.password,
       }
     })
+   
+    return user
+  }
 
+  async listUserName(name: string): Promise<User | null> {
+    const user = await prisma.user.findFirst({
+      where: {
+        name,
+      }
+    })
+  
     return user
   }
 }
